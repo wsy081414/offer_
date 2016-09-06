@@ -30,6 +30,33 @@ long long fib_2(unsigned int n)
 	return fib2;
 
 }
+unsigned long long* Fib_3(int n)
+{
+	assert(n >= 0);
+	unsigned long long *Fib = new unsigned long long[n];
+	Fib[0] = 0;
+	Fib[1] = 1;
+	for (int i = 2; i <= n; i++)
+	{
+		Fib[i] = Fib[i - 1] + Fib[i - 2];
+	}
+	return Fib;
+}
+
+
+unsigned long long Fib_4(int n)
+{
+	assert(n >= 0);
+
+	unsigned long long FibArray[3] = { 0, 1, n };
+	for (int i = 2; i <=n; i++)
+	{
+		FibArray[2] = FibArray[1] + FibArray[0];
+		FibArray[0] = FibArray[1];
+		FibArray[1] = FibArray[2];
+	}
+	return FibArray[2];
+}
 int main()
 {
 	unsigned int n = 0;
