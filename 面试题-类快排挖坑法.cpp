@@ -8,32 +8,57 @@
 
 //这道题采用一种类似快速排序的挖坑的方法进行。
 
+
 void SwapSort(int *pArr, int *pPos, int n)
 {
 	assert(pArr);
 	assert(pPos);
 	int tmp = pArr[0];
 	int i = 0;
-	for(i = 0;pPos[i] != 0;)
+	for (int j = 0; j < n; )
 	{
 		if (pPos[i] != i)
 		{
-			pArr[i] = pArr[pPos[i]];
-			i = pPos[i];
+			tmp = pArr[i];
+			int prevpos = i;
+			while (1)
+			{
+				pArr[i] = pArr[pPos[i]];
+				i = pPos[i];
+				j++;
+				if (prevpos == pPos[i])
+				{
+					pArr[i] = tmp;
+					i = prevpos + 1;
+					j++;
+					break;
+				}
+			}		
+		}
+		else
+		{
+			i++;
+			j++;
 		}
 	}
-	pArr[i] = tmp;
 
 }
 
 void test1()
 {
 	int pArr[] = { 'A', 'B', 'C', 'D', 'E' };
-	int pPos[] = { 2, 0, 1, 4, 3 };
-		SwapSort(pArr, pPos, sizeof(pArr) / sizeof(pArr[0]));
+	int pPos[] = { 3, 0, 1, 4, 2 };
+	SwapSort(pArr, pPos, sizeof(pArr) / sizeof(pArr[0]));
 	for (int i = 0; i<sizeof(pArr) / sizeof(pArr[0]); ++i)
 	{
 		printf("%c  ",pArr[i]);
 	}
+	cout << endl;
+}
 
+int main()
+{
+	test1();
+	system("pause");
+	return 0;
 }
