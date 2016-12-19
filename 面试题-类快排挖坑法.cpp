@@ -44,6 +44,51 @@ void SwapSort(int *pArr, int *pPos, int n)
 
 }
 
+
+
+void swapsort(int *parr, int *ppos, int n)
+{
+	assert(parr);
+	assert(ppos);
+	int tmp = parr[0];
+	int i = 0;
+	for (int j = 0; j < n;)
+	{
+
+		while (i == ppos[i])
+		{
+			i++;							//相等，说明就在正确的位置上，这个时候，只需要调整向后，知道找到下一个非正确位置。
+			j++;
+		}
+		//当全部填充后，可以考虑跳出
+		if (i >= n)
+			break;
+
+		if (ppos[i] != i)
+		{
+			tmp = parr[i];				//选坑
+			int prevpos = i;			//记录前面的i
+			while (1)
+			{
+				parr[i] = parr[ppos[i]];		//填坑
+				int newpos = ppos[i];			//寻找下一个pos
+				ppos[i] = i;							//修正原来的pos
+				i = newpos;						//调整至新节点
+				j++;
+				if (prevpos == ppos[i])		//查看新点的pos是否和前一个点的i相同，如果相同，就出现了循环的问题。
+				{
+					parr[i] = tmp;
+					ppos[i] = i;						//修正pos
+					i = prevpos + 1;				//移动至前一个的下一个
+					j++;
+					break;
+				}
+			}
+		}
+		
+	}
+
+}
 void test1()
 {
 	int pArr[] = { 'A', 'B', 'C', 'D', 'E' };
