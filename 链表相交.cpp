@@ -21,7 +21,7 @@ public:
     int findListLenth(ListNode *pHead1) {
         if(pHead1 == NULL) return 0; 
         int sum = 1;
-        while(pHead1 = pHead1->next) 
+        while(pHead1 = pHead1->next)  
             sum++;
         return sum;
     }
