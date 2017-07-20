@@ -3,26 +3,28 @@ class Solution
 {
 public:
     void push(int node) {
-        
+        stack1.push(node);
     }
 
     int pop() {
-        
+        if(stack2.empty())
+            {
+            while(!stack1.empty())
+                {
+                stack2.push(stack1.top());
+                stack1.pop();            
+            }
+        }
+            int data=stack2.top();
+        stack2.pop();
+        return data;
     }
-
 private:
     stack<int> stack1;
     stack<int> stack2;
 };
 //两个队列实现一个栈
-#pragma once
 
-#include<iostream>
-#include<cstdlib>
-#include<cassert>
-#include<queue>
-
-using namespace std;
 
 template<typename T>
 class Stack
