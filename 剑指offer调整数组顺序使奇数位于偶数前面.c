@@ -2,6 +2,35 @@
 //题目：输入一个整数数组，实现一个函数来调整该数组中
 //数字的顺序使得所有的奇数位于数组的前半部分，
 //所有的偶数位于数组的后半部分。
+//
+//
+//
+//
+class Solution {
+public:
+    bool Find(int target, vector<vector<int> > array) {
+        //得到行的size
+        int row = array[0].size();
+        int column = array.size();
+
+        //给出一个边界信息
+        int i = 0, j = row - 1;
+
+        //While循环情况限制，
+        while (i < column && j >= 0) {
+            //如果target小于边界数组值，这个时候就在这个位置之前找
+            if (target < array[i][j]) {
+                j--;
+            ////如果target大于边界数组值，这个时候就在这个位置下一行找
+            } else if (target > array[i][j]) {
+                i++;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+};
 #include<stdio.h>
 #include<stdlib.h>
 void sort_arr(int *p, int count)
